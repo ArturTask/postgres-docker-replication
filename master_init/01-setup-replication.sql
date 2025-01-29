@@ -1,0 +1,1 @@
+CREATE USER replica_user REPLICATION LOGIN PASSWORD 'replica_pass';
