@@ -1,5 +1,10 @@
 1) start 2 containers `docker-compose -f ./docker-compose up`
-`pg-master` and `pg-replica` containers
+
+
+`pg-master` and `pg-replica` containers will be up (u can check it with `docker ps`)
+also notice 2 directories with data:
+* ./master_data
+* ./relpica_data
 
 2) change `pg-master` settings
 go to `./master_data/postgresql.conf` and change theese settings
@@ -25,7 +30,7 @@ host    replication     replica_user    0.0.0.0/0               trust
 4.1) stop `pg-replica` and delete all files of data directory tome
 `docker stop pg-replica`
 
-delete all files from `./replica-data` (on Linux just `rm -r ./replica-data` on windows can be done through provider)
+delete all files from `./replica_data` (on Linux just `rm -r ./replica_data` on windows can be done through provider)
 
 4.2) copy all data from `pg-master` using `pg_basebackup`
 
@@ -38,7 +43,7 @@ exit
 ```
 
 on local mashine:
-`docker cp pg-master:/tmp/pgdump ./replica-data`
+`docker cp pg-master:/tmp/pgdump ./replica_data`
 
 4.3) start `pg-replica`
 `docker start pg-replica`
